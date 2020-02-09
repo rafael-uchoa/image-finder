@@ -5,6 +5,9 @@
   <br>
 </h3> 
 
+## Overview
+This App utilizes [Pixabay API](https://pixabay.com/api/docs/).
+
 ## To Run The App
 1. `npm install || yarn`
 2. `Add your API Key in App.tsx`
