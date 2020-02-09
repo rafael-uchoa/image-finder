@@ -6,7 +6,7 @@
 </h3> 
 
 ## Overview
-This App utilizes [Pixabay API](https://pixabay.com/api/docs/).
+This App utilizes the [Pixabay API](https://pixabay.com/api/docs/).
 
 ## To Run The App
 1. `npm install || yarn`
