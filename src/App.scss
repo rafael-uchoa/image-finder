@@ -1,0 +1,15 @@
+@import './styles/resets';
+@import './styles/config';
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  h1 {
+    font-family: 'Lobster', cursive;
+    margin-top: 20px;
+    color: #48a74b;
+  }
+}

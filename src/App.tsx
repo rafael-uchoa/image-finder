@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './App.scss';
 
-const App = () => {
+import Navbar from './components/Navbar';
+import ImagesGrid from './components/ImagesGrid';
+
+const App: React.FC = () => {
+  const apiUrl = 'https://pixabay.com/api';
+  const apiKey = 'YOUR_API_KEY';
+
+  const [input, setInput] = useState<string>();
+  const [images, setImages] = useState<Array<any>>();
+
+  const onInput = (e: React.FormEvent<HTMLInputElement>) => {
+    setInput(e.currentTarget.value);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input === '') return;
+    imageHandler(input);
+  };
+
+  const imageHandler = (current: string | undefined) => {
+    axios
+      .get(
+        `${apiUrl}/?key=${apiKey}&q=${current}&image_type=photo&safesearch=true`
+      )
+      .then(res => setImages(res.data.hits))
+      .catch(err => console.log(err));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>ImageFinder</h1>
+      <Navbar onInput={onInput} onSubmit={onSubmit} />
+      <ImagesGrid images={images} />
     </div>
   );
-}
+};
 
 export default App;
